@@ -1,0 +1,16 @@
+{
+  "server": {
+    "port": "9000",
+    "host_url": "localhost:9000",
+    "host": "localhost"
+  },
+  "token": {
+    "JWT_SECRET_KEY": "hdfjkdhfjshgfjhgg"
+  },
+  "dataBase": {
+    "host": "localhost",
+    "user": "root",
+    "password": "",
+    "database": "demo2"
+  }
+}

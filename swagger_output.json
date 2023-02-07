@@ -1,0 +1,248 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:9000",
+  "securityDefinitions": {
+    "authenticate": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "authorization",
+      "description": "Please provide the valid access token, if you dont have please login and get the token as response!",
+      "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc1MzU3MjU2LCJleHAiOjE2NzU0NDM2NTZ9.M8kpNVwCC1zjyGNykXnBODe5MTF5CXeIknzlQqE_NsA"
+    }
+  },
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/v1/auth/": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "value": "piyushchourasiya20@gmail.com"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "value": "piyushchourasiya20@gmail.com"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "203": {
+            "description": "Non-Authoritative Information"
+          }
+        }
+      }
+    },
+    "/v1/candidate": {
+      "post": {
+        "description": "",
+        "security": [
+          {
+            "authenticate": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "first_name",
+            "in": "formData",
+            "type": "string",
+            "value": "Michael",
+            "required": true
+          },
+          {
+            "name": "last_name",
+            "in": "formData",
+            "type": "string",
+            "value": "Scott"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "type": "string",
+            "value": "mscott@gmail.com"
+          },
+          {
+            "name": "contact_number",
+            "in": "formData",
+            "type": "string",
+            "value": "+12345678901"
+          },
+          {
+            "name": "gender",
+            "in": "formData",
+            "type": "string",
+            "value": "Male"
+          },
+          {
+            "name": "specialization",
+            "in": "formData",
+            "type": "string",
+            "value": "Computer Science"
+          },
+          {
+            "name": "work_ex_year",
+            "in": "formData",
+            "type": "number",
+            "value": "2"
+          },
+          {
+            "name": "candidate_dob",
+            "in": "formData",
+            "type": "number",
+            "value": "886352160"
+          },
+          {
+            "name": "address",
+            "in": "formData",
+            "type": "string",
+            "value": ""
+          },
+          {
+            "name": "skills",
+            "in": "formData",
+            "type": "string",
+            "value": "Java, Python"
+          },
+          {
+            "name": "resume",
+            "in": "formData",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "300": {
+            "description": "Validation Server Error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "value":"1"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "value": "10"
+          }
+        ],
+        "security": [
+          {
+            "authenticate": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "300": {
+            "description": "Validation Server Error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/candidate/{id}": {
+      "get": {
+        "description": "",
+        "security": [
+          {
+            "authenticate": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "300": {
+            "description": "Validation Server Error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/v1/candidate/search": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "number",
+            "required": true,
+            "value" : "10"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "required": true,
+            "value" : "1"
+          }
+        ],
+        "security": [
+          {
+            "authenticate": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "300": {
+            "description": "Validation Server Error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
